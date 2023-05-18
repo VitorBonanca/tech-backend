@@ -1,0 +1,54 @@
+<%- include('layout.ejs'); %>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2>The Energy Consumption Helper</h2> 
+            <h3>Bem vindo <%= user.name %> </h3>
+        </div>
+        <div class="col-md-8">
+            <h4>Sou TECH, seu ajudante na redução do consumo de energia elétrica. </h4>
+            <h4>Vamos começar a economizar?</h4>
+        </div>
+        <div class="card">
+            <div class="card-header">1. Primeiro passo:</div>
+            <div class="card-body">
+
+                <form class="form-horizontal" method="post" action="/add-home">
+                
+                    <div class="form-group">
+                        <label for="home" class="cols-sm-2 control-label">Qual o tipo de casa deseja adicionar?</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <select class="form-control" name="home" id="home" placeholder="Escolha o tipo de casa">
+                                    <option value="casa">Casa</option>
+                                    <option value="apartamento">Apartamento</option>
+                                    <option value="sobrado">Sobrado</option>
+                                    <option value="terraço">Terraço</option>
+                                    <option value="chácara">Chácara</option>
+                                    <option value="duplex">Duplex</option>
+                                </select>
+                                <br>
+                                <div class="form-group ">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Adicionar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        
+
+
+    </div>
+</div>
+<div>
+    <a href="/logout"> <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Logout</button> </a>
+</div>
+
+</body>
+
+</html>
