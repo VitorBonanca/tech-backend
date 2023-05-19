@@ -4,16 +4,6 @@ const mongoose = require("mongoose");
 
 const addHome = async (req, res) => {
   const { type } = req.body;
- /* console.log(type);
-
-  const home = new Home({
-    type,
-    user: req.user._id
-  });
-
-  console.log(home);
-  const savedHome = await home.save();
-  return res.send("Test")*/
   try {
     const home = new Home({
       type,
@@ -21,8 +11,7 @@ const addHome = async (req, res) => {
     });
 
     const savedHome = await home.save();
-//    const user = await User.findById(req.user._id);
-//    await user.addHome(savedHome._id);
+
     const user = await User.updateOne({
       _id: req.user._id,
     }, {

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// const Home = require("./home");
 
 const UserSchema = new mongoose.Schema({
   name: {
