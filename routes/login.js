@@ -26,6 +26,4 @@ router.post('/login', loginUser);
 
 router.get('/logout', logoutUser);
 
-// router.post("/add-home", homeController.addHome);
-
 module.exports = router;

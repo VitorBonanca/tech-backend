@@ -32,11 +32,11 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-/*
-userSchema.methods.addHome = async function (homeId) {
+
+UserSchema.methods.addHome = async function (homeId) {
   this.homes.push(homeId);
   await this.save();
 };
-*/
+
 
 module.exports = User;
