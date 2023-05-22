@@ -1,22 +1,27 @@
 <%- include('layout.ejs'); %>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row pb-4 justify-content-center">
         <div class="col-md-8">
             <h2>The Energy Consumption Helper</h2> 
             <h3>Bem vindo <%= user.name %> </h3>
         </div>
+    </div>
+    <div class="row pb-4 justify-content-center">
         <div class="col-md-8">
             <h4>Sou TECH, seu ajudante na redução do consumo de energia elétrica. </h4>
             <h4>Vamos começar a economizar?</h4>
         </div>
-        <div class="card">
-            <div class="card-header">1. Primeiro passo:</div>
+    </div>
+
+    <div class="row pb-4 justify-content-center">
+        <div class="col-md-8 card">
+            <div class="card-header">1. Primeiro passo, adicione uma casa:</div>
             <div class="card-body">
 
                 <form class="form-horizontal" method="post" action="/home/add">
                 
                     <div class="form-group">
-                        <label for="type" class="cols-sm-2 control-label">Qual o tipo de casa deseja adicionar?</label>
+                        <label for="type" class="cols-sm-2 control-label">Escolha o tipo da casa:</label>
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -28,21 +33,26 @@
                                     <option value="chácara">Chácara</option>
                                     <option value="duplex">Duplex</option>
                                 </select>
-                                <br>
-                                <div class="form-group ">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Adicionar</button>
-                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rate" class="cols-sm-2 control-label">Tarifa corrente (incluindo impostos):</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" name="rate" id="rate" placeholder="Tarifa corrente" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Adicionar</button>
                     </div>
                 </form>
             </div>
         </div>
-
-
-        
-
-
     </div>
 </div>
 <div>
