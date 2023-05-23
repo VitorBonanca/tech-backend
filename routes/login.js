@@ -14,6 +14,8 @@ const {
 
 const { protectRoute } = require("../auth/protect");
 
+const { showHomes } = require("../controllers/homeController");
+
 const router = express.Router();
 
 router.get('/register', registerView);
