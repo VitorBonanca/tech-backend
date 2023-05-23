@@ -28,8 +28,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static(__dirname + '/assets'));
+
 //Routes
 app.use('/', require('./routes/login'));
 app.use('/home', require('./routes/home'));
+app.use('/room', require('./routes/room'));
 const PORT = process.env.PORT || 4111;
 app.listen(PORT, console.log("Server has started at port " + PORT))

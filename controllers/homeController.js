@@ -3,13 +3,14 @@ const User = require("../models/user");
 const mongoose = require("mongoose");
 
 const addHome = async (req, res) => {
-  const { type, rate } = req.body;
-  if (!type || !rate) {
+  const { type, description, rate } = req.body;
+  if (!type || !description || !rate) {
     console.log("Fill empty fields");
   } else {
     try {
       const home = new Home({
         type,
+        description,
         rate,
         user: req.user._id
       });

@@ -5,6 +5,10 @@ const homeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   rate: {
     type: Number,
     required: true,
@@ -17,6 +21,12 @@ const homeSchema = new mongoose.Schema({
     type: Number,
     default: 0.00,
   },
+  rooms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room"
+    }
+  ],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -25,5 +35,10 @@ const homeSchema = new mongoose.Schema({
 });
 
 const Home = mongoose.model("Home", homeSchema);
+
+homeSchema.methods.addRoom = async function (roomId) {
+  this.rooms.push(roomId);
+  await this.save();
+};
 
 module.exports = Home;
