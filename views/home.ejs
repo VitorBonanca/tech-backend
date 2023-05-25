@@ -3,55 +3,55 @@
     <div class="row pb-4 justify-content-center">
         <div class="col-md-8">
             <h2>The Energy Consumption Helper</h2> 
-            <h3>Bem vindo <%= user.name %> </h3>
+            <h3>Olá <%= user.name %> </h3>
         </div>
     </div>
     <div class="row pb-4 justify-content-center">
         <div class="col-md-8">
-            <h4>Sou TECH, seu ajudante na redução do consumo de energia elétrica. </h4>
-            <h4>Vamos começar a economizar?</h4>
+            <h3>Esta é sua propriedade: <%= home.description %>. </h3>
         </div>
     </div>
 
     <div class="row pb-4 justify-content-center">
         <div class="col-md-8 card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <div class="card-title">Estas são suas casas:</div>
+                <div class="card-title">Cômodos na propriedade:</div>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-primary btn-sm" id="addHouseModalButton" data-toggle="modal" data-target="#addHouseModal">+</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="addRoomModalButton" data-toggle="modal" data-target="#addRoomModal">+</button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <%- include('homes.ejs'); %>
+                    <%- include('rooms.ejs'); %>
                 </div>
             </div>
         </div>
     </div>
 <!--
-    <div class="modal fade" id="addHouseModal" tabindex="-1" role="dialog" aria-labelledby="addHouseModalTitle" aria-hidden="true">
+    <div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="addRoomModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="addHouseModalTitle">Adicione uma casa:</h5>
+              <h5 class="modal-title" id="addRoomModalTitle">Adicione um cômodo:</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div> -->
-            <form class="form-horizontal" method="post" action="/home/add">
+            <form class="form-horizontal" method="post" action="/room/add">
                 <!-- <div class="modal-body"> -->
                     <div class="form-group">
-                        <label for="type" class="cols-sm-2 control-label">Escolha o tipo da casa:</label>
+                        <label for="type" class="cols-sm-2 control-label">Escolha o tipo de cômodo:</label>
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <select class="form-control" name="type" id="type" placeholder="Escolha o tipo de casa">
-                                    <option value="Casa">Casa</option>
-                                    <option value="Apartamento">Apartamento</option>
-                                    <option value="Sobrado">Sobrado</option>
-                                    <option value="Terraço">Terraço</option>
-                                    <option value="Chácara">Chácara</option>
+                                <select class="form-control" name="type" id="type" placeholder="Escolha o tipo de cômodo">
+                                    <option value="Sala">Sala</option>
+                                    <option value="Cozinha">Cozinha</option>
+                                    <option value="Quarto">Quarto</option>
+                                    <option value="Banheiro">Banheiro</option>
+                                    <option value="Lavanderia">Lavanderia</option>
                                     <option value="Escritório">Escritório</option>
+                                    <option value="Quintal">Quintal</option>
                                 </select>
                             </div>
                         </div>
@@ -67,15 +67,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="rate" class="cols-sm-2 control-label">Tarifa corrente (incluindo impostos):</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" name="rate" id="rate" placeholder="Tarifa corrente" />
-                            </div>
-                        </div>
-                    </div>
                 <!-- </div>
                 <div class="modal-footer"> -->
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -85,6 +76,9 @@
           </div>
         </div>
     </div>
+</div>
+<div>
+    <a href="/dashboard"> <button type="submit" class="btn btn-primary">Voltar para tela principal</button> </a>
 </div>
 <div>
     <a href="/logout"> <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Logout</button> </a>

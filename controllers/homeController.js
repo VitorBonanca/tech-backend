@@ -42,7 +42,14 @@ const showHomes = async (req, res) => {
   }
 };
 
+const homeView = (req, res) => {
+  res.render("home", {
+  } );
+}
+
+
 module.exports = {
   addHome,
-  showHomes
+  showHomes,
+  homeView
 };

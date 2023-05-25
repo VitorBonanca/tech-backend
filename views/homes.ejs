@@ -2,7 +2,7 @@
     <% homes.forEach(function(home) { %>
         <div class="col-sm-6">
             <div class="card" style="width: 18rem;">
-                <img src="/images/<%= home.type %>.jpg" class="card-img-top" alt="..." height="200">
+                <img src="/images/<%= home.type %>.png" class="card-img-top" alt="..." height="200">
                 <div class="card-body">
                 <h5 class="card-title"><%= home.type %></h5>
                 <p class="card-text"><%= home.description %></p>
@@ -14,7 +14,7 @@
                 <li class="list-group-item">Custo Mensal: <%= home.monthlyCost %></li>
                 </ul>
                 <div class="card-body">
-                <a href="#" class="card-link">Editar</a>
+                <a href="/home" class="card-link">Editar</a>
                 <a href="#" class="card-link">Excluir</a>
                 </div>
             </div>
