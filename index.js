@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const mongoose = require('mongoose');
+const expressLayouts = require('express-ejs-layouts');
+
 const dotenv = require("dotenv");
 dotenv.config();
 const passport = require("passport");
@@ -15,6 +17,7 @@ mongoose.connect(database, {useUnifiedTopology: true, useNewUrlParser: true })
 .catch(err => console.log(err));
 
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
 
 //BodyParsing
 app.use(express.urlencoded({extended: false}));

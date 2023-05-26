@@ -17,6 +17,7 @@
 * passport
 * passport-local
 * nodemon
+* express-ejs-layouts
 
 
 

@@ -42,14 +42,51 @@ const showHomes = async (req, res) => {
   }
 };
 
-const homeView = (req, res) => {
+const homeView = async (req, res) => {
+  const id = req.params.id;
+
+  const home = await Home.findById(id).populate("rooms");
+
   res.render("home", {
-  } );
+    user: { 
+      name: "Usuario"
+    },
+    home,
+  });
 }
 
+const homeUpdate = async (req, res) => {
+  const id = req.params.id;
+
+  const home = await Home.findById(id).populate("rooms");
+
+  const { type, description, rate } = req.body;
+  let updateObj = {};
+  if (type) updateObj.type = type;
+  if (description) updateObj.description = description;
+  if (rate) updateObj.rate = rate;
+
+  if (Object.keys(updateObj).length === 0) {
+    console.log("No fields provided for update");
+  } else {
+    try {
+      const savedHome = await Home.updateOne({ _id: id }, { $set: updateObj });
+
+      res.render("home", {
+        user: { 
+          name: "Usuario"
+        },
+        home: savedHome,
+      });
+    } catch (error) {
+      console.error("Update failed: ", error);
+    }
+  }
+}
 
 module.exports = {
   addHome,
   showHomes,
-  homeView
+  homeView,
+  homeUpdate,
 };

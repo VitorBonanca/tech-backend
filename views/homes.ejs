@@ -14,8 +14,8 @@
                 <li class="list-group-item">Custo Mensal: <%= home.monthlyCost %></li>
                 </ul>
                 <div class="card-body">
-                <a href="/home" class="card-link">Editar</a>
-                <a href="#" class="card-link">Excluir</a>
+                <a href="/home/update/<%= home.id %>" class="card-link" data-id="<%= home.id %>">Editar</a>
+                <a href="/home/delete/<%= home.id %>" class="card-link" data-id="<%= home.id %>">Excluir</a>
                 </div>
             </div>
         </div>
