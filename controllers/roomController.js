@@ -4,21 +4,23 @@ const mongoose = require("mongoose");
 
 const addRoom = async (req, res) => {
   const { type } = req.body;
+  const homeId = req.params.homeId;
+
   try {
     const room = new Room({
       type,
-      home: req.home._id
+      home: homeId
     });
-
+    
     const savedRoom = await room.save();
 
     const home = await Home.updateOne({
-      _id: req.home._id,
+      _id: homeId
     }, {
       $push: { rooms:savedRoom._id }
     })
   
-    res.redirect("/dashboard");
+    res.redirect(`/home/update/${homeId}`);
 
   } catch (error) {
     console.log(error);

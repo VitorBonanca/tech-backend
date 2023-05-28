@@ -24,6 +24,9 @@
                     <%- include('rooms.ejs'); %>
                 </div>
             </div>
+            <div>
+                <a href="/dashboard"> <button type="submit" class="btn btn-primary">Voltar para tela principal</button> </a>
+            </div>
         </div>
     </div>
 
@@ -36,7 +39,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form class="form-horizontal" method="post" action="/room/add">
+            <form class="form-horizontal" method="post" action="/room/<%= home._id %>/add">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="type" class="cols-sm-2 control-label">Escolha o tipo de cômodo:</label>
@@ -76,15 +79,11 @@
         </div>
     </div>
 </div>
-<div>
-    <a href="/dashboard"> <button type="submit" class="btn btn-primary">Voltar para tela principal</button> </a>
-</div>
+
 <div>
     <a href="/logout"> <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Logout</button> </a>
 </div>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 </body>
 
 </html>
