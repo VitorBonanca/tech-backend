@@ -28,6 +28,18 @@ const addRoom = async (req, res) => {
   }
 };
 
+// const showRooms = async (req, res) => {
+//   try {
+//     const rooms = await Room.find({ home: req.user._id });
+
+//     res.render(`home/update/${homeId}`, { rooms });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send("Ocorreu um erro ao exibir os cômodos.");
+//   }
+// };
+
 module.exports = {
-  addRoom
+  addRoom,
+  // showRooms,
 };
