@@ -1,22 +1,20 @@
-<div class="row">
+<div class="card-deck">
     <% homes.forEach(function(home) { %>
-        <div class="col-sm-6">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/<%= home.type %>.png" class="card-img-top" alt="..." height="200">
-                <div class="card-body">
-                <h5 class="card-title"><%= home.type %></h5>
-                <p class="card-text"><%= home.description %></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item">Tarifa corrente: <%= home.rate %></li>
-                <li class="list-group-item">Cômodos:</li>
-                <li class="list-group-item">Consumo estimado: <%= home.consumption %></li>
-                <li class="list-group-item">Custo Mensal: <%= home.monthlyCost %></li>
-                </ul>
-                <div class="card-body">
-                <a href="/home/update/<%= home.id %>" class="card-link" data-id="<%= home.id %>">Editar</a>
-                <a href="/home/delete/<%= home.id %>" class="card-link" data-id="<%= home.id %>">Excluir</a>
-                </div>
+        <div class="card" style="width: 18rem;">
+            <img src="/images/<%= home.type %>.png" class="card-img-top" alt="..." height="200">
+            <div class="card-body">
+            <h5 class="card-title"><%= home.type %></h5>
+            <p class="card-text"><%= home.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Tarifa corrente: <%= home.rate %></li>
+            <li class="list-group-item">Cômodos:</li>
+            <li class="list-group-item">Consumo estimado: <%= home.consumption %></li>
+            <li class="list-group-item">Custo Mensal: <%= home.monthlyCost %></li>
+            </ul>
+            <div class="card-body">
+            <a href="/home/update/<%= home.id %>" class="card-link" data-id="<%= home.id %>">Editar</a>
+            <a href="/home/delete/<%= home.id %>" class="card-link" data-id="<%= home.id %>">Excluir</a>
             </div>
         </div>
     <% }); %>

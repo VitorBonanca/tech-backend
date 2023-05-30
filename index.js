@@ -16,8 +16,9 @@ mongoose.connect(database, {useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => console.log('Connected to the Database successfully'))
 .catch(err => console.log(err));
 
-app.set('view engine', 'ejs');
 app.use(expressLayouts);
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/assets'));
 
 //BodyParsing
 app.use(express.urlencoded({extended: false}));
@@ -31,7 +32,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(__dirname + '/assets'));
+app.set("layout login", false);
+app.set("layout register", false);
 
 //Routes
 app.use('/', require('./routes/login'));
