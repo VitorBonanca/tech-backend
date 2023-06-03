@@ -1,20 +1,66 @@
 <div class="container">
-    <div class="row pb-4 justify-content-center">
-        <div class="col-md-8">
-            <h2>The Energy Consumption Helper</h2> 
-            <h3>Olá <%= user.name %> </h3>
-        </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+          <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Home - <%= home.description %></li>
+        </ol>
+    </nav>
+    <div class="app-title">
+        <h1 class="h2">The Energy Consumption Helper</h1>
+        <p>Sou TECH, seu ajudante na redução do consumo de energia elétrica.</p>
     </div>
-    <div class="row pb-4 justify-content-center">
-        <div class="col-md-8">
-            <h3>Esta é sua propriedade: <%= home.description %>. </h3>
+    <hr>
+
+    <h3>Olá <%= user.name %>, esta área é sua <%= home.description %>: </h3>
+
+    <div class="row my-4">
+        <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="card h-100">
+                <h5 class="card-header">Cômodos</h5>
+                <div class="card-body">
+                  <h5 class="card-title">5</h5>
+                  <p class="card-text">cômodos nessa propriedade</p>
+                  <p class="card-text text-info">última atualização em out/22</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card h-100">
+                <h5 class="card-header">Consumo Estimado</h5>
+                <div class="card-body">
+                  <h5 class="card-title">145 kWh por mês</h5>
+                  <p class="card-text">R$ 116,00</p>
+                  <p class="card-text text-danger">15.6% de desvio do real</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card h-100">
+                <h5 class="card-header">Consumo Real</h5>
+                <div class="card-body">
+                  <h5 class="card-title">167,6 kWh este mês</h5>
+                  <p class="card-text">R$ 134,08</p>
+                  <p class="card-text text-success">2.6% menor que último mês</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card h-100">
+                <h5 class="card-header">Economia</h5>
+                <div class="card-body">
+                  <h5 class="card-title">R$ 27,00</h5>
+                  <p class="card-text">em 12 meses</p>
+                  <p class="card-text text-success">16% de redução</p>
+                </div>
+              </div>
         </div>
     </div>
 
-    <div class="row pb-4 justify-content-center">
-        <div class="col-md-8 card">
+    <div class="row">
+        <div class="col-12 col-xl-12 mb-4 mb-lg-0">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <div class="card-title">Cômodos na propriedade:</div>
+                <h5>Cômodos nesta propriedade:</h5>
                 <div class="card-tools">
                     <button type="button" class="btn btn-primary btn-sm" id="addRoomModalButton" data-toggle="modal" data-target="#addRoomModal">+</button>
                 </div>
@@ -24,9 +70,82 @@
                     <%- include('rooms.ejs'); %>
                 </div>
             </div>
-            <div>
-                <a href="/dashboard"> <button type="submit" class="btn btn-primary">Voltar para tela principal</button> </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-xl-7 mb-4 mb-lg-4">
+            <div class="card">
+                <h5 class="card-header">Últimas contas de energia</h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Data</th>
+                                <th scope="col">Consumo Estimado</th>
+                                <th scope="col">Consumo Real</th>
+                                <th scope="col">Valor Pago</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Abr 2023</th>
+                                <td>116 kWh</td>
+                                <td>167,6 kWh</td>
+                                <td>R$ 134.08</td>
+                                <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Mar 2023</th>
+                                <td>116 kWh</td>
+                                <td>172 kWh</td>
+                                <td>R$ 137.60</td>
+                                <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Fev 2023</th>
+                                <td>108 kWh</td>
+                                <td>175 kWh</td>
+                                <td>R$ 140,00</td>
+                                <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Jan 2023</th>
+                                <td>108 kWh</td>
+                                <td>157 kWh</td>
+                                <td>R$ 125,60</td>
+                                <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Dez 2022</th>
+                                <td>108 kWh</td>
+                                <td>160 kWh</td>
+                                <td>R$ 128,00</td>
+                                <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Nov 2022</th>
+                                <td>108 kWh</td>
+                                <td>179 kWh</td>
+                                <td>R$ 143,20</td>
+                                <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                      <a href="#" class="btn btn-block btn-light">View all</a>
+                </div>
             </div>
+        </div>
+        <div class="col-12 col-xl-5">
+            <div class="card">
+                <h5 class="card-header">Consumo de energia nos últimos 6 meses</h5>
+                <div class="card-body">
+                    <div id="consumption-chart"></div>
+                </div>
+              </div>
         </div>
     </div>
 
@@ -81,7 +200,7 @@
 </div>
 
 <div>
-    <a href="/logout"> <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Logout</button> </a>
+    <a href="/dashboard"> <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Voltar para tela principal</button> </a>
 </div>
 
 </body>

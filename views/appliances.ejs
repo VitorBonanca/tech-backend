@@ -1,0 +1,22 @@
+<div class="row">
+    <% appliances.forEach(function(appliance) { %>
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img src="<%= appliance.image %>" class="card-img-top" alt="..." height="200">
+                <div class="card-body">
+                <h5 class="card-title"><%= appliance.type %></h5>
+                <p class="card-text"><%= appliance.description %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">Aparelhos:</li>
+                <li class="list-group-item">Consumo estimado: <%= appliance.consumption %></li>
+                <li class="list-group-item">Custo Mensal: <%= appliance.monthlyCost %></li>
+                </ul>
+                <div class="card-body">
+                <a href="/room/update/<%= appliance.id %>" class="card-link" data-id="<%= appliance.id %>">Editar</a>
+                <a href="/room/delete/<%= appliance.id %>" class="card-link" data-id="<%= appliance.id %>">Excluir</a>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>

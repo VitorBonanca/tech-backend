@@ -39,5 +39,6 @@ app.set("layout register", false);
 app.use('/', require('./routes/login'));
 app.use('/home', require('./routes/home'));
 app.use('/room', require('./routes/room'));
+app.use('/appliance', require('./routes/appliance'));
 const PORT = process.env.PORT || 4111;
 app.listen(PORT, console.log("Server has started at port " + PORT))

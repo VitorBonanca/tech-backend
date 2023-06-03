@@ -13,6 +13,12 @@ const roomSchema = new mongoose.Schema({
     type: Number,
     default: 0.00,
   },
+  appliances: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Appliance"
+    }
+  ],
   home: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Home",
