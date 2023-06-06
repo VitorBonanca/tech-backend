@@ -36,6 +36,7 @@ const addAppliance = async (req, res) => {
       })
     
       res.redirect(`/room/update/${roomId}`);
+      // res.render('../views/room.ejs', { appliancesEnum: Object.values(AppliancesEnum) });
 
     } catch (error) {
       console.log(error);

@@ -1,7 +1,7 @@
-<div class="row">
+<div class="card-deck">
     <% rooms.forEach(function(room) { %>
-        <div class="col-sm-6">
-            <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;">
+            <a href="/room/view/<%= room.id %>" class="clickable-card" data-id="<%= room.id %>">
                 <img src="/images/<%= room.type %>.png" class="card-img-top" alt="..." height="200">
                 <div class="card-body">
                 <h5 class="card-title"><%= room.type %></h5>
@@ -16,7 +16,7 @@
                 <a href="/room/update/<%= room.id %>" class="card-link" data-id="<%= room.id %>">Editar</a>
                 <a href="/room/delete/<%= room.id %>" class="card-link" data-id="<%= room.id %>">Excluir</a>
                 </div>
-            </div>
+            </a>
         </div>
     <% }); %>
 </div>

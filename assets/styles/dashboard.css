@@ -24,3 +24,12 @@ height: calc(100vh - 70px)
 color: #333;
 font-weight: 500;
 }
+
+a.clickable-card {
+    text-decoration: none;
+    color: black;
+}
+
+a.clickable-card:hover, a.clickable-card:focus  {
+    text-decoration: none;
+}
