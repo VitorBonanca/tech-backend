@@ -21,7 +21,7 @@ const addRoom = async (req, res) => {
       $push: { rooms:savedRoom._id }
     })
   
-    res.redirect(`/home/update/${homeId}`);
+    res.redirect(`/home/view/${homeId}`);
 
   } catch (error) {
     console.log(error);

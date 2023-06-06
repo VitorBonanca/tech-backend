@@ -35,7 +35,7 @@ const addAppliance = async (req, res) => {
         $push: { appliances:savedAppliance._id }
       })
     
-      res.redirect(`/room/update/${roomId}`);
+      res.redirect(`/room/view/${roomId}`);
       // res.render('../views/room.ejs', { appliancesEnum: Object.values(AppliancesEnum) });
 
     } catch (error) {
