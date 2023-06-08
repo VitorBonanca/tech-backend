@@ -92,13 +92,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <select class="form-control" name="type" id="type" placeholder="Escolha o tipo de cômodo">
-                                    <option value="Microsystem">Aparelho de Som</option>
-                                    <option value="Heater">Aquecedor</option>
-                                    <option value="AirConditioning">Ar Condicionado</option>
-                                    <option value="Computer">Computador</option>
-                                    <option value="Exhaustor">Exaustor</option>
-                                    <option value="GasCooker">Fogão a Gás</option>
-                                    <option value="ElectricCooker">Fogão Elétrico</option>
+                                    <% for (const key of Object.keys(appliancesEnum)) { %>
+                                        <option value="<%= key %>"><%= appliancesEnum[key].Name %></option>
+                                    <% } %>
                                 </select>
                             </div>
                         </div>

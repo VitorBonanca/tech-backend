@@ -29,22 +29,11 @@ const addRoom = async (req, res) => {
   }
 };
 
-// const showRooms = async (req, res) => {
-//   try {
-//     const rooms = await Room.find({ home: req.user._id });
-
-//     res.render(`home/update/${homeId}`, { rooms });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("Ocorreu um erro ao exibir os cômodos.");
-//   }
-// };
-
-
 const roomView = async (req, res) => {
+  
   const id = req.params.id;
-
   const room = await Room.findById(id).populate("appliances");
+  const appliancesEnum = require("../enums/appliances");
 
   try {
     const appliances = await Appliance.find({ room });
@@ -53,12 +42,13 @@ const roomView = async (req, res) => {
         name: "Usuario"
       },
       room,
-      appliances
+      appliances,
+      appliancesEnum
     });
   } catch (error) {
       console.log(error);
       res.status(500).send("Ocorreu um erro ao exibir o painel do cômodo.");
-    }  
+  }
 };
 
 const roomUpdate = async (req, res) => {
@@ -90,7 +80,6 @@ const roomUpdate = async (req, res) => {
 
 module.exports = {
   addRoom,
-  // showRooms,
   roomView,
   roomUpdate,
 };
