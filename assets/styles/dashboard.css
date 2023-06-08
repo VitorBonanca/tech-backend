@@ -25,6 +25,20 @@ color: #333;
 font-weight: 500;
 }
 
+/* .card-deck{
+    margin-top: 10px;
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 280px));
+    grid-gap: .5rem;
+} */
+
+.card-deck .card {
+    min-width: 250px;
+    max-width: 250px;
+    margin-bottom: 20px;
+}
+
 a.clickable-card {
     text-decoration: none;
     color: black;
