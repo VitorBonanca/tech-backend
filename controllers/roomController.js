@@ -1,31 +1,38 @@
 const Room = require("../models/room");
 const Home = require("../models/home");
-const Appliance = require("../models/appliance")
+const User = require("../models/user");
+const Appliance = require("../models/appliance");
+const ApplianceCalculator = require("../models/applianceCalculator");
 const mongoose = require("mongoose");
 
 const addRoom = async (req, res) => {
-  const { type } = req.body;
+  const { type, description } = req.body;
   const homeId = req.params.homeId;
 
-  try {
-    const room = new Room({
-      type,
-      home: homeId
-    });
+  if (!type || !description) {
+    console.log("Fill empty fields");
+  } else {
+    try {
+      const room = new Room({
+        type,
+        description,
+        home: homeId
+      });
+      
+      const savedRoom = await room.save();
+
+      const home = await Home.updateOne({
+        _id: homeId
+      }, {
+        $push: { rooms:savedRoom._id }
+      })
     
-    const savedRoom = await room.save();
+      res.redirect(`/home/view/${homeId}`);
 
-    const home = await Home.updateOne({
-      _id: homeId
-    }, {
-      $push: { rooms:savedRoom._id }
-    })
-  
-    res.redirect(`/home/view/${homeId}`);
-
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Ocorreu um erro ao adicionar o cômodo.");
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Ocorreu um erro ao adicionar o cômodo.");
+    }
   }
 };
 
@@ -37,9 +44,20 @@ const roomView = async (req, res) => {
 
   try {
     const appliances = await Appliance.find({ room });
+    const home = await Home.findById(room.home);
+    const user = await User.findById(home.user);
+
+    for (const appliance of appliances) {
+      appliance.consumption = ApplianceCalculator.calculateConsumption(appliance);
+      appliance.monthlyCost = ApplianceCalculator.calculateMonthlyCost(appliance, home.rate);
+    }
+
     res.render("room", {
       user: { 
-        name: "Usuario"
+        name: user.name,
+      },
+      home: {
+        description: home.description,
       },
       room,
       appliances,

@@ -3,7 +3,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
           <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#">Home - </a></li>
+          <li class="breadcrumb-item"><a href="#">Home - <%= home.description %></a></li>
           <li class="breadcrumb-item active" aria-current="page">Room - <%= room.description %></li>
         </ol>
     </nav>
@@ -14,7 +14,7 @@
     
     <hr>
 
-    <h3>Olá <%= user.name %>, esta área é sua <%= room.description %> da casa: </h3>
+    <h3>Olá <%= user.name %>, esta área é sua <%= room.description %> da casa <%= home.description %>: </h3>
 
     <div class="row my-4">
         <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="power" class="cols-sm-2 control-label">Potência (em kW):</label>
+                        <label for="power" class="cols-sm-2 control-label">Potência (em W):</label>
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>

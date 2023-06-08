@@ -12,6 +12,10 @@ const applianceSchema = new mongoose.Schema({
     enum: Object.values(appliancesEnum).map(value => value.Image),
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   power: {
     type: Number,
     default: 0,
@@ -26,14 +30,6 @@ const applianceSchema = new mongoose.Schema({
     type: Number,
     default: 0,
     required: true,
-  },
-  consumption: {
-    type: Number,
-    default: 0,
-  },
-  monthlyCost: {
-    type: Number,
-    default: 0.00,
   },
   room: {
     type: mongoose.Schema.Types.ObjectId,

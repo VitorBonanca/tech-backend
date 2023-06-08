@@ -5,13 +5,9 @@ const roomSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  consumption: {
-    type: Number,
-    default: 0,
-  },
-  monthlyCost: {
-    type: Number,
-    default: 0.00,
+  description: {
+    type: String,
+    required: true,
   },
   appliances: [
     {

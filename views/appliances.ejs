@@ -7,9 +7,8 @@
             <p class="card-text"><%= appliance.description %></p>
             </div>
             <ul class="list-group list-group-flush">
-            <li class="list-group-item">Aparelhos:</li>
-            <li class="list-group-item">Consumo estimado: <%= appliance.consumption %></li>
-            <li class="list-group-item">Custo Mensal: <%= appliance.monthlyCost %></li>
+            <li class="list-group-item">Consumo estimado: <%= appliance.consumption %> kWh</li>
+            <li class="list-group-item">Custo Mensal: R$ <%= appliance.monthlyCost %></li>
             </ul>
             <div class="card-body">
             <a href="/room/update/<%= appliance.id %>" class="card-link" data-id="<%= appliance.id %>">Editar</a>

@@ -5,10 +5,10 @@ const AppliancesEnum = require("../enums/appliances")
 const mongoose = require("mongoose");
 
 const addAppliance = async (req, res) => {
-  const { type, power, usageDuration, usageFrequency } = req.body;
+  const { type, description, power, usageDuration, usageFrequency } = req.body;
   const roomId = req.params.roomId;
 
-  if (!type || !power || !usageDuration || !usageFrequency) {
+  if (!type || !description || !power || !usageDuration || !usageFrequency) {
     console.log("Fill empty fields");
   } else {
     try {
@@ -21,6 +21,7 @@ const addAppliance = async (req, res) => {
       const appliance = new Appliance({
         type: AppliancesEnum[type].Name,
         image: AppliancesEnum[type].Image,
+        description,
         power,
         usageDuration,
         usageFrequency,
@@ -36,7 +37,6 @@ const addAppliance = async (req, res) => {
       })
     
       res.redirect(`/room/view/${roomId}`);
-      // res.render('../views/room.ejs', { appliancesEnum: Object.values(AppliancesEnum) });
 
     } catch (error) {
       console.log(error);
@@ -45,18 +45,7 @@ const addAppliance = async (req, res) => {
   }
 };
 
-// const showAppliances = async (req, res) => {
-//   try {
-//     const appliances = await Appliance.find({ room: req.user._id });
-
-//     res.render(`room/update/${roomId}`, { appliances });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("Ocorreu um erro ao exibir os aparelhos.");
-//   }
-// };
 
 module.exports = {
   addAppliance,
-  // showAppliance,
 };
