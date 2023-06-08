@@ -13,14 +13,6 @@ const homeSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  consumption: {
-    type: Number,
-    default: 0,
-  },
-  monthlyCost: {
-    type: Number,
-    default: 0.00,
-  },
   rooms: [
     {
       type: mongoose.Schema.Types.ObjectId,

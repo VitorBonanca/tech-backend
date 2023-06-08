@@ -3,7 +3,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
           <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="#">Home - <%= home.description %></a></li>
+          <li class="breadcrumb-item"><a href="/home/view/<%= home.id %>">Home - <%= home.description %></a></li>
           <li class="breadcrumb-item active" aria-current="page">Room - <%= room.description %></li>
         </ol>
     </nav>
@@ -21,7 +21,7 @@
             <div class="card h-100">
                 <h5 class="card-header">Aparelhos</h5>
                 <div class="card-body">
-                  <h5 class="card-title">4</h5>
+                  <h5 class="card-title"><%= totalAppliances %></h5>
                   <p class="card-text">aparelhos neste cômodo</p>
                 </div>
               </div>
@@ -30,7 +30,7 @@
             <div class="card h-100">
                 <h5 class="card-header">Consumo Estimado</h5>
                 <div class="card-body">
-                  <h5 class="card-title">145 kWh</h5>
+                  <h5 class="card-title"><%= room.consumption %> kWh</h5>
                   <p class="card-text">por mês</p>
                 </div>
               </div>
@@ -39,7 +39,7 @@
             <div class="card h-100">
                 <h5 class="card-header">Custo Estimado</h5>
                 <div class="card-body">
-                  <h5 class="card-title">R$ 116,00</h5>
+                  <h5 class="card-title">R$ <%= room.monthlyCost %></h5>
                   <p class="card-text">por mês</p>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                 <h5 class="card-header">Potencial de redução</h5>
                 <div class="card-body">
                   <h5 class="card-title">12%</h5>
-                  <p class="card-text">mudando algubs hábitos</p>
+                  <p class="card-text">mudando alguns hábitos</p>
                 </div>
               </div>
         </div>

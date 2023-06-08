@@ -3,6 +3,7 @@ const Home = require("../models/home");
 const User = require("../models/user");
 const Appliance = require("../models/appliance");
 const ApplianceCalculator = require("../models/applianceCalculator");
+const RoomCalculator = require("../models/roomCalculator");
 const mongoose = require("mongoose");
 
 const addRoom = async (req, res) => {
@@ -42,10 +43,16 @@ const roomView = async (req, res) => {
   const room = await Room.findById(id).populate("appliances");
   const appliancesEnum = require("../enums/appliances");
 
+  room.consumption = RoomCalculator.calculateConsumption(room);
+
   try {
     const appliances = await Appliance.find({ room });
     const home = await Home.findById(room.home);
     const user = await User.findById(home.user);
+
+    const totalAppliances = appliances.length;
+
+    room.monthlyCost = RoomCalculator.calculateMonthlyCost(room, home.rate);
 
     for (const appliance of appliances) {
       appliance.consumption = ApplianceCalculator.calculateConsumption(appliance);
@@ -57,11 +64,13 @@ const roomView = async (req, res) => {
         name: user.name,
       },
       home: {
+        id: home.id,
         description: home.description,
       },
       room,
       appliances,
-      appliancesEnum
+      appliancesEnum,
+      totalAppliances
     });
   } catch (error) {
       console.log(error);
