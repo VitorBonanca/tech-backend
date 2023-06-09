@@ -12,12 +12,15 @@ const {
     dashboardView
 } = require("../controllers/dashboardController");
 
-const { protectRoute } = require("../auth/protect");
+const { 
+    landingPage
+} = require("../controllers/landingController");
 
-//const { showHomes } = require("../controllers/homeController");
+const { protectRoute } = require("../auth/protect");
 
 const router = express.Router();
 
+router.get('/landing', landingPage);
 router.get('/register', registerView);
 router.get('/login', loginView);
 

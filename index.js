@@ -32,6 +32,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.set("layout landing", false);
 app.set("layout login", false);
 app.set("layout register", false);
 
