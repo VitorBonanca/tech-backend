@@ -19,10 +19,93 @@
                 <li class="list-group-item">Custo Mensal: R$ <%= appliance.monthlyCost %></li>
                 </ul>
                 <div class="card-body">
-                <a href="/room/update/<%= appliance.id %>" class="card-link" data-id="<%= appliance.id %>">Editar</a>
-                <a href="/room/delete/<%= appliance.id %>" class="card-link" data-id="<%= appliance.id %>">Excluir</a>
+                <a href="#editApplianceModal" class="card-link edit-appliance-button" data-toggle="modal" data-target="#editApplianceModal<%= appliance.id %>" data-id="<%= appliance.id %>">Editar</a>
+                <a href="#removeApplianceModal" class="card-link remove-appliance-button" data-toggle="modal" data-target="#removeApplianceModal<%= appliance.id %>" data-id="<%= appliance.id %>">Excluir</a>
+                </div>
+            </div>
+            <div class="modal fade" id="removeApplianceModal<%= appliance.id %>" tabindex="-1" role="dialog" aria-labelledby="removeApplianceModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="removeApplianceModalTitle">Confirmar remoção</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-horizontal" id="removeApplianceForm" method="post" action="/appliance/<%= room.id %>/delete/<%= appliance.id %>">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="type" class="cols-sm-2 control-label">Tem certeza que deseja excluir <%= appliance.description %>?</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Remover</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editApplianceModal<%= appliance.id %>" tabindex="-1" role="dialog" aria-labelledby="editApplianceModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editApplianceModalTitle">Atualização de cadastro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-horizontal" id="editApplianceForm" method="post" action="/appliance/update/<%= appliance.id %>">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="type" class="cols-sm-2 control-label">O que deseja alterar no <%= appliance.type %>?</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="cols-sm-2 control-label">Descrição:</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="description" id="description" placeholder="= appliance.description %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="power" class="cols-sm-2 control-label">Potência (em W):</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="number" min="0" max="10000" step="1" class="form-control" name="power" id="power" placeholder="= appliance.power %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="usageDuration" class="cols-sm-2 control-label">Tempo contínuo de uso (em horas):</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="number" min="0" max="24" step="0.01" class="form-control" name="usageDuration" id="usageDuration" placeholder="= appliance.usageDuration %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="usageFrequency" class="cols-sm-2 control-label">Frequência de uso (vezes ao mês):</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="number" min="0" max="100" step="1" class="form-control" name="usageFrequency" id="usageFrequency" placeholder="= appliance.usageFrequency %>" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
+                        </div>
+                    </form>
+                    </div>
                 </div>
             </div>
         <% }); %>
     <% } %>   
 </div>
+        

@@ -45,7 +45,28 @@ const addAppliance = async (req, res) => {
   }
 };
 
+const removeAppliance = async (req, res) => {
+  const roomId = req.params.roomId;
+  const applianceId = req.params.applianceId;
+ 
+  try {
+    await Room.updateOne(
+      { _id: roomId },
+      { $pull: { appliances: applianceId } }
+    );
+
+    await Appliance.findByIdAndDelete(applianceId);
+
+    res.redirect(`/room/view/${roomId}`);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Ocorreu um erro ao excluir o aparelho.");
+  }
+
+}
 
 module.exports = {
   addAppliance,
+  removeAppliance,
 };
