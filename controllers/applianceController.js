@@ -45,6 +45,34 @@ const addAppliance = async (req, res) => {
   }
 };
 
+const updateAppliance = async (req, res) => {
+  
+  const roomId = req.params.roomId;
+  const applianceId = req.params.applianceId;
+  try {
+
+    const appliance = await Appliance.findById(applianceId);
+
+    if (!appliance) {
+      return res.status(404).json({ error: 'Aparelho não encontrado.' });
+    }
+
+    appliance.description = req.body.description;
+    appliance.power = req.body.power;
+    appliance.usageDuration = req.body.usageDuration;
+    appliance.usageFrequency = req.body.usageFrequency;
+
+    await appliance.save();
+
+    res.redirect(`/room/view/${roomId}`);
+
+  } catch (error) {
+    console.error('Erro ao atualizar o aparelho:', error);
+    res.status(500).json({ error: 'Erro interno do servidor.' });
+  }
+
+};
+
 const removeAppliance = async (req, res) => {
   const roomId = req.params.roomId;
   const applianceId = req.params.applianceId;
@@ -68,5 +96,6 @@ const removeAppliance = async (req, res) => {
 
 module.exports = {
   addAppliance,
+  updateAppliance,
   removeAppliance,
 };
