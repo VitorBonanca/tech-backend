@@ -45,14 +45,15 @@ const addHome = async (req, res) => {
 
 const homeView = async (req, res) => {
   const id = req.params.id;
-
   const home = await Home.findById(id).populate("rooms");
 
   try {
     const rooms = await Room.find({ home });
+    const user = await User.findById(home.user);
+
     res.render("home", {
       user: { 
-        name: "Usuario"
+        name: user.name,
       },
       home,
       rooms

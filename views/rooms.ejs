@@ -1,22 +1,85 @@
 <div class="card-deck">
-    <% rooms.forEach(function(room) { %>
+    <% if (rooms.length === 0) { %>
         <div class="card" style="width: 18rem;">
-            <a href="/room/view/<%= room.id %>" class="clickable-card" data-id="<%= room.id %>">
-                <img src="/images/<%= room.type %>.png" class="card-img-top" alt="..." height="200">
-                <div class="card-body">
-                <h5 class="card-title"><%= room.type %></h5>
-                <p class="card-text"><%= room.description %></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item">Aparelhos:</li>
-                <li class="list-group-item">Consumo estimado: <%= room.consumption %></li>
-                <li class="list-group-item">Custo Mensal: <%= room.monthlyCost %></li>
-                </ul>
-                <div class="card-body">
-                <a href="/room/update/<%= room.id %>" class="card-link" data-id="<%= room.id %>">Editar</a>
-                <a href="/room/delete/<%= room.id %>" class="card-link" data-id="<%= room.id %>">Excluir</a>
-                </div>
-            </a>
+            <div class="card-body">
+              <h5 class="card-title">Nenhum cômodo cadastrado</h5>
+              <p class="card-text">Nenhum cômodo foi adicionado a esta casa.</p>
+            </div>
         </div>
-    <% }); %>
+    <% } else { %>
+        <% rooms.forEach(function(room) { %>
+            <div class="card" style="width: 18rem;">
+                <a href="/room/view/<%= room.id %>" class="clickable-card" data-id="<%= room.id %>">
+                    <img src="/images/<%= room.type %>.png" class="card-img-top" alt="..." height="200">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= room.type %></h5>
+                        <p class="card-text"><%= room.description %></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Aparelhos: <%= room.appliances.length %></li>
+                        <li class="list-group-item">Consumo estimado: <%= room.consumption %></li>
+                        <li class="list-group-item">Custo Mensal: <%= room.monthlyCost %></li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#editRoomModal" class="card-link edit-room-button" data-toggle="modal" data-target="#editRoomModal<%= room.id %>" data-id="<%= room.id %>">Editar</a>
+                        <a href="#removeRoomModal" class="card-link remove-room-button" data-toggle="modal" data-target="#removeRoomModal<%= room.id %>" data-id="<%= room.id %>">Excluir</a>
+                    </div>
+                </a>
+            </div>
+            <div class="modal fade" id="removeRoomModal<%= room.id %>" tabindex="-1" role="dialog" aria-labelledby="removeRoomModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="removeRoomModalTitle">Confirmar remoção</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-horizontal" id="removeRoomForm" method="post" action="/room/<%= home.id %>/delete/<%= room.id %>">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="type" class="cols-sm-2 control-label">Tem certeza que deseja excluir <%= room.description %>?</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Remover</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editRoomModal<%= room.id %>" tabindex="-1" role="dialog" aria-labelledby="editRoomModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editRoomModalTitle">Atualização de cadastro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-horizontal" id="editRoomForm" method="post" action="/room/<%= home.id %>/update/<%= room.id %>">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="type" class="cols-sm-2 control-label">Faça as alterações desejadas em <%= room.type %>?</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="cols-sm-2 control-label">Descrição:</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="description" id="description" value="<%= room.description %>" />
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    <% } %> 
 </div>

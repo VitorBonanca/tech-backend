@@ -105,10 +105,39 @@ const roomUpdate = async (req, res) => {
   }
 }
 
+const removeRoom = async (req, res) => {
+  const homeId = req.params.homeId;
+  const roomId = req.params.roomId;
+ 
+  
+  try {
+    
+    const room = await Room.findById(roomId);
+    
+    if (!room) {
+      return res.status(404).send("Cômodo não encontrado.");
+    }
+    
+    await Home.updateOne(
+      { _id: homeId },
+      { $pull: { rooms: roomId } }
+      );
+      
+    await Appliance.deleteMany({ _id: { $in: room.appliances } });
+    await Room.findByIdAndDelete(roomId);
 
+    res.redirect(`/home/view/${homeId}`);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Ocorreu um erro ao excluir o cômodo.");
+  }
+
+}
 
 module.exports = {
   addRoom,
   roomView,
   roomUpdate,
+  removeRoom
 };
