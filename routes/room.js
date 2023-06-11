@@ -3,8 +3,8 @@ const express = require('express');
 const { 
     addRoom,
     roomView,
-    roomUpdate,
-    // updateRoom,
+    // roomUpdate,
+    updateRoom,
     removeRoom
 } = require("../controllers/roomController");
 
@@ -16,9 +16,9 @@ router.post("/:homeId/add/", protectRoute, addRoom);
 
 router.get("/view/:id", protectRoute, roomView);
 
-router.post("/update/:id", protectRoute, roomUpdate);
+// router.post("/update/:id", protectRoute, roomUpdate);
 
-// router.post("/:homeId/update/:roomId", protectRoute, updateRoom);
+router.post("/:homeId/update/:roomId", protectRoute, updateRoom);
 
 router.post("/:homeId/delete/:roomId", protectRoute, removeRoom);
 

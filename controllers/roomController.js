@@ -78,32 +78,57 @@ const roomView = async (req, res) => {
   }
 };
 
-const roomUpdate = async (req, res) => {
-  const id = req.params.id;
+// const roomUpdate = async (req, res) => {
+//   const id = req.params.id;
 
-  const room = await Room.findById(id).populate("appliances");
+//   const room = await Room.findById(id).populate("appliances");
 
-  const { type } = req.body;
-  let updateObj = {};
-  if (type) updateObj.type = type;
+//   const { type } = req.body;
+//   let updateObj = {};
+//   if (type) updateObj.type = type;
 
-  if (Object.keys(updateObj).length === 0) {
-    console.log("No fields provided for update");
-  } else {
-    try {
-      const savedRoom = await Room.updateOne({ _id: id }, { $set: updateObj });
+//   if (Object.keys(updateObj).length === 0) {
+//     console.log("No fields provided for update");
+//   } else {
+//     try {
+//       const savedRoom = await Room.updateOne({ _id: id }, { $set: updateObj });
 
-      res.render("room", {
-        user: { 
-          name: "Usuario"
-        },
-        room: savedRoom,
-      });
-    } catch (error) {
-      console.error("Update failed: ", error);
+//       res.render("room", {
+//         user: { 
+//           name: "Usuario"
+//         },
+//         room: savedRoom,
+//       });
+//     } catch (error) {
+//       console.error("Update failed: ", error);
+//     }
+//   }
+// }
+
+const updateRoom = async (req, res) => {
+  
+  const homeId = req.params.homeId;
+  const roomId = req.params.roomId;
+  try {
+
+    const room = await Room.findById(roomId);
+
+    if (!room) {
+      return res.status(404).json({ error: 'Cômodo não encontrado.' });
     }
+
+    room.description = req.body.description;
+    
+    await room.save();
+
+    res.redirect(`/home/view/${homeId}`);
+
+  } catch (error) {
+    console.error('Erro ao atualizar o cômodo:', error);
+    res.status(500).json({ error: 'Erro interno do servidor.' });
   }
-}
+
+};
 
 const removeRoom = async (req, res) => {
   const homeId = req.params.homeId;
@@ -138,6 +163,7 @@ const removeRoom = async (req, res) => {
 module.exports = {
   addRoom,
   roomView,
-  roomUpdate,
+  // roomUpdate,
+  updateRoom,
   removeRoom
 };
