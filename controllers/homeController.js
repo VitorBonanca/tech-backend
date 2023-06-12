@@ -2,10 +2,12 @@ const Home = require("../models/home");
 const User = require("../models/user");
 const Room = require("../models/room");
 const RoomCalculator = require("../models/roomCalculator");
+const HomeCalculator = require("../models/homeCalculator");
 const mongoose = require("mongoose");
 
 const addHome = async (req, res) => {
   const { type, description, rate } = req.body;
+
   if (!type || !description || !rate) {
     console.log("Fill empty fields");
   } else {
@@ -34,6 +36,7 @@ const addHome = async (req, res) => {
 };
 
 const homeView = async (req, res) => {
+
   const id = req.params.id;
   const home = await Home.findById(id).populate({
     path: "rooms",
@@ -42,12 +45,16 @@ const homeView = async (req, res) => {
     },
   });
 
+  home.consumption = HomeCalculator.calculateConsumption(home);
+
   try {
     // const rooms = await Room.find({ home });
     const rooms = home.rooms;
     const user = await User.findById(home.user);
 
     const totalRooms = rooms.length;
+
+    home.monthlyCost = HomeCalculator.calculateMonthlyCost(home, home.rate);
 
     for (const room of rooms) {
       room.consumption = RoomCalculator.calculateConsumption(room);

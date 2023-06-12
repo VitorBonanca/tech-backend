@@ -22,7 +22,6 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= totalRooms %></h5>
                   <p class="card-text">cômodos nessa propriedade</p>
-                  <p class="card-text text-info">última atualização em out/22</p>
                 </div>
               </div>
         </div>
@@ -30,8 +29,8 @@
             <div class="card h-100">
                 <h5 class="card-header">Consumo Estimado</h5>
                 <div class="card-body">
-                  <h5 class="card-title">145 kWh por mês</h5>
-                  <p class="card-text">R$ 116,00</p>
+                  <h5 class="card-title"><%= home.consumption %> kWh</h5>
+                  <p class="card-text">R$ <%= home.monthlyCost %></p>
                   <p class="card-text text-danger">15.6% de desvio do real</p>
                 </div>
               </div>
