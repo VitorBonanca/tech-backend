@@ -6,7 +6,7 @@ class RoomCalculator {
       let consumption = 0;
 
       for (const appliance of room.appliances) {
-        const applianceCalculator = new ApplianceCalculator(appliance);
+        // const applianceCalculator = new ApplianceCalculator(appliance);
         const applianceConsumption = ApplianceCalculator.calculateConsumption(appliance);
         consumption += applianceConsumption;
       }
