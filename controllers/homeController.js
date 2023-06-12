@@ -32,17 +32,6 @@ const addHome = async (req, res) => {
   }
 };
 
-// const showHomes = async (req, res) => {
-//   try {
-//     const homes = await Home.find({ user: req.user._id });
-
-//     res.render("dashboard", { homes });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("Ocorreu um erro ao exibir as casas.");
-//   }
-// };
-
 const homeView = async (req, res) => {
   const id = req.params.id;
   const home = await Home.findById(id).populate("rooms");
@@ -95,7 +84,6 @@ const homeUpdate = async (req, res) => {
 
 module.exports = {
   addHome,
-  // showHomes,
   homeView,
   homeUpdate,
 };

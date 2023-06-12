@@ -17,8 +17,8 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Aparelhos: <%= room.appliances.length %></li>
-                        <li class="list-group-item">Consumo estimado: <%= room.consumption %></li>
-                        <li class="list-group-item">Custo Mensal: <%= room.monthlyCost %></li>
+                        <li class="list-group-item">Consumo estimado: <%= room.consumption %> kWh</li>
+                        <li class="list-group-item">Custo Mensal: R$ <%= room.monthlyCost %></li>
                     </ul>
                     <div class="card-body">
                         <a href="#editRoomModal" class="card-link edit-room-button" data-toggle="modal" data-target="#editRoomModal<%= room.id %>" data-id="<%= room.id %>">Editar</a>
@@ -72,6 +72,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Atualizar</button>
