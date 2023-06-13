@@ -3,7 +3,6 @@ const express = require('express');
 const { 
     addRoom,
     roomView,
-    // roomUpdate,
     updateRoom,
     removeRoom
 } = require("../controllers/roomController");
@@ -15,8 +14,6 @@ const router = express.Router();
 router.post("/:homeId/add/", protectRoute, addRoom);
 
 router.get("/view/:id", protectRoute, roomView);
-
-// router.post("/update/:id", protectRoute, roomUpdate);
 
 router.post("/:homeId/update/:roomId", protectRoute, updateRoom);
 
