@@ -17,9 +17,9 @@
                     </div>
                         <ul class="list-group list-group-flush">
                         <li class="list-group-item">Tarifa corrente: <%= home.rate %></li>
-                        <li class="list-group-item">Cômodos:</li>
-                        <li class="list-group-item">Consumo estimado: <%= home.consumption %></li>
-                        <li class="list-group-item">Custo Mensal: <%= home.monthlyCost %></li>
+                        <li class="list-group-item">Cômodos: <%= home.rooms.length %></li>
+                        <li class="list-group-item">Consumo estimado: <%= home.consumption %> kWh</li>
+                        <li class="list-group-item">Custo Mensal: R$ <%= home.monthlyCost %></li>
                     </ul>
                 </a>
                 <div class="card-body">
